@@ -153,6 +153,7 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(input_current_max),
 	POWER_SUPPLY_ATTR(input_current_trim),
 	POWER_SUPPLY_ATTR(input_current_settled),
+	POWER_SUPPLY_ATTR(bypass_vchg_loop_debouncer),
 	POWER_SUPPLY_ATTR(current_now),
 	POWER_SUPPLY_ATTR(current_avg),
 	POWER_SUPPLY_ATTR(power_now),
@@ -185,14 +186,15 @@ static struct device_attribute power_supply_attrs[] = {
 	POWER_SUPPLY_ATTR(scope),
 	POWER_SUPPLY_ATTR(system_temp_level),
 	POWER_SUPPLY_ATTR(resistance),
-#ifdef CONFIG_PIC1503_FASTCG
+	POWER_SUPPLY_ATTR(authenticate),//wangjc add for authentication
+#ifdef CONFIG_MACH_OPPO
+/* jingchun.wang@Onlinerd.Driver, 2013/12/16  Add for charge timeout */
 	POWER_SUPPLY_ATTR(charge_timeout),
+#endif /*CONFIG_MACH_OPPO*/
+#ifdef CONFIG_PIC1503_FASTCG
+/* jingchun.wang@Onlinerd.Driver,2013/12/22 Add for fastchg*/
 	POWER_SUPPLY_ATTR(fastcharger),
-#endif
-	/* Local extensions */
-	POWER_SUPPLY_ATTR(usb_hc),
-	POWER_SUPPLY_ATTR(usb_otg),
-	POWER_SUPPLY_ATTR(charge_enabled),
+#endif	//CONFIG_PIC1503_FASTCG
 	/* Properties of type `const char *' */
 	POWER_SUPPLY_ATTR(model_name),
 	POWER_SUPPLY_ATTR(manufacturer),
