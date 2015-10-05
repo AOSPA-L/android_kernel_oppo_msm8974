@@ -44,7 +44,7 @@
 extern char *BQ27541_HMACSHA1_authenticate(char *Message,char *Key,char *result);
 #endif //CONFIG_MACH_OPPO
 
-#ifdef CONFIG_OPPO_MSM_14021
+#ifdef CONFIG_MACH_OPPO
 /* OPPO 2014-06-23 sjc Add begin for 14021 */
 static int mcu_en_gpio = 0;
 void mcu_en_gpio_set(int value)
@@ -65,7 +65,7 @@ void mcu_en_gpio_set(int value)
 {
 	return;
 }
-#endif //CONFIG_OPPO_MSM_14021
+#endif //CONFIG_MACH_OPPO
 
 extern int load_soc(void);//sjc1121
 extern void backup_soc_ex(int soc); /* yangfangbiao@oneplus.cn, 2015/01/19  Add for  sync with android 4.4  */
@@ -1159,7 +1159,6 @@ static bool bq27541_authenticate(struct i2c_client *client)
 	}
 	return false;
 }
-#endif //CONFIG_MACH_OPPO
 
 #ifdef CONFIG_MACH_OPPO
 //Fuchun.Liao@EXP.Driver,2014/01/10 add for check battery type
@@ -1194,7 +1193,7 @@ static int bq27541_batt_type_detect(struct i2c_client *client)
 	pr_info("%s battery_type:%d\n",__func__,rc);
 	return rc;
 }
-#endif //defined (CONFIG_MACH_OPPO) || defined (CONFIG_OPPO_MSM_14021)
+#endif //defined (CONFIG_MACH_OPPO) || defined (CONFIG_MACH_OPPO)
 #endif //CONFIG_MACH_OPPO
 
 /* OPPO 2013-12-12 liaofuchun add for fastchg */
@@ -1554,7 +1553,7 @@ static int bq27541_battery_probe(struct i2c_client *client,
 	int num;
 	int retval = 0;
 	
-#ifdef CONFIG_OPPO_MSM_14021
+#ifdef CONFIG_MACH_OPPO
 /* OPPO 2014-06-23 sjc Add begin for 14021 */
 	struct device_node *dev_node = client->dev.of_node;
 	int ret;
@@ -1573,7 +1572,7 @@ static int bq27541_battery_probe(struct i2c_client *client,
 			gpio_set_value(mcu_en_gpio, 0);
 		}
 	}
-#endif //CONFIG_OPPO_MSM_14021
+#endif //CONFIG_MACH_OPPO
 
 	pr_info("%s\n", __func__);
 
@@ -1700,7 +1699,7 @@ static int bq27541_battery_remove(struct i2c_client *client)
 {
 	struct bq27541_device_info *di = i2c_get_clientdata(client);
 	
-#ifdef CONFIG_OPPO_MSM_14021
+#ifdef CONFIG_MACH_OPPO
 /* OPPO 2014-06-23 sjc Add begin for 14021 */	
 	if (gpio_is_valid(mcu_en_gpio))//sjc0623 add
 		gpio_free(mcu_en_gpio);
